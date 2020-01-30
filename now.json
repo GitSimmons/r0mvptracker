@@ -1,0 +1,14 @@
+{
+  "env": {
+    "APIKEY": "@apikey",
+    "AUTHDOMAIN": "@authdomain",
+    "PROJECTID": "@projectid"
+  },
+  "build": {
+    "env": {
+      "APIKEY": "@apikey",
+      "AUTHDOMAIN": "@authdomain",
+      "PROJECTID": "@projectid"
+    }
+  }
+}
