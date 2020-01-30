@@ -1,5 +1,9 @@
 # Ragna0 MVP Tracker
 
+Ragnarok is an online game with server wide bosses to hunt. This tool helps players to see which bosses are available at a glance rather than spending time consulting the previous solution - a manually updated google spreadsheet.
+
+On the front-end, NextJS renders out the basic table and pulls the data through a subscription to FireStore. Because NextJS uses SSR, requests to the database are kept constant rather than based on current users. The backend is populated through Puppeteer, but I have yet to open source that code.
+
 ## Requirements
 
 This project will require a Firestore DB with two collections.
