@@ -14,8 +14,7 @@ const GlobalStyle = createGlobalStyle`
       rgba(0, 0, 0, 0.75) 0%,
       rgba(0, 0, 0, 0.75) 100%
     ),
-    url("https://res.cloudinary.com/acloudforben/image/upload/v1578003080/background2156x1080.jpg");
-    /* rgba(0, 105, 95, 1) 100%; */
+    url("https://res.cloudinary.com/acloudforben/image/upload/f_auto/v1578003080/background2156x1080.jpg");
     background-size: inherit;
   background-position: top;
   @media (min-height : 1080px)  {
@@ -23,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
       to right,
       rgba(0, 0, 0, 0.75) 0%,
       rgba(0, 0, 0, 0.75) 100%
-    ), url("https://res.cloudinary.com/acloudforben/image/upload/v1578002789/background.jpg");
+    ), url("https://res.cloudinary.com/acloudforben/image/upload/f_auto/v1578002789/background.jpg");
   }
   }
 `;
