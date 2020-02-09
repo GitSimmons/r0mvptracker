@@ -56,7 +56,7 @@ const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum }> = (
             onClick={(): void => handleClick(SortsEnum[column])}
             highlighted={sort === SortsEnum[column]}
           >
-            {column}
+            {column.toLowerCase()}
           </FlexColumn>
         )
       }
