@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SortsEnum } from "./types/enums";
+import { SortsEnum, ColumnsEnum } from "./types/enums";
 const StyledRow = styled.div`
   background-color: "#ccc" !important;
   width: 100%;
@@ -32,6 +32,7 @@ const FlexColumn = styled.div<{
     display: flex;
   }
   color: ${(props): string => (props.highlighted ? "#fff" : "#ddd")};
+  text-transform: capitalize;
 `;
 
 const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum }> = ({ setSort, sort }: { setSort: (sort: SortsEnum) => void, sort: SortsEnum }) => {
@@ -42,59 +43,23 @@ const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum }> = (
       setSort(column);
     }
   };
+  const columns = ["LEVEL", "NAME", "FIELD", "RESPAWN", "SIZE", "RACE"]
   return (
     <StyledRow>
-      <FlexColumn
-        flex={1}
-        center
-        hidden
-        onClick={(): void => handleClick(SortsEnum.LEVEL)}
-        highlighted={sort === SortsEnum.LEVEL}
-      >
-        Level
-      </FlexColumn>
-      <FlexColumn
-        flex={3}
-        onClick={(): void => handleClick(SortsEnum.NAME)}
-        highlighted={sort === SortsEnum.NAME}
-      >
-        MVP
-      </FlexColumn>
-      <FlexColumn
-        flex={2}
-        hidden
-        onClick={(): void => handleClick(SortsEnum.FIELD)}
-        highlighted={sort === SortsEnum.FIELD}
-      >
-        Field
-      </FlexColumn>
-      <FlexColumn
-        flex={3}
-        onClick={(): void => handleClick(SortsEnum.RESPAWN)}
-        highlighted={sort === SortsEnum.RESPAWN}
-      >
-        Respawn
-      </FlexColumn>
-      <FlexColumn
-        flex={1}
-        center
-        hidden
-        onClick={(): void => handleClick(SortsEnum.SIZE)}
-        highlighted={sort === SortsEnum.SIZE}
-      >
-        Size
-      </FlexColumn>
-      <FlexColumn
-        flex={2}
-        hidden
-        onClick={(): void => handleClick(SortsEnum.RACE)}
-        highlighted={sort === SortsEnum.RACE}
-      >
-        Race
-      </FlexColumn>
-      {/* <FlexColumn flex={2} hidden>
-        Killed By
-      </FlexColumn> */}
+      {
+        columns.map((column: string) =>
+          <FlexColumn
+            key={column}
+            flex={ColumnsEnum[column]}
+            center={ColumnsEnum[column] === 1}
+            hidden={ColumnsEnum[column] !== 3}
+            onClick={(): void => handleClick(SortsEnum[column])}
+            highlighted={sort === SortsEnum[column]}
+          >
+            {column}
+          </FlexColumn>
+        )
+      }
     </StyledRow>
   );
 };
