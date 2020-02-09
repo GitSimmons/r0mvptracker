@@ -16,14 +16,14 @@ const StyledRow = styled.div`
 const FlexColumn = styled.div<{
   flex: number;
   center?: boolean;
-  hidden?: boolean;
+  hideOnMobile?: boolean;
   highlighted?: boolean;
 }>`
   flex: ${(props): number => (props.flex ? props.flex : null)};
   display: flex;
   align-items: center;
   justify-content: ${(props): string => (props.center ? "center" : "left")};
-  display: ${(props): string => (props.hidden ? "none" : "flex")};
+  display: ${(props): string => (props.hideOnMobile ? "none" : "flex")};
   &:hover {
     cursor: pointer;
     color: #fff;
@@ -52,7 +52,7 @@ const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum }> = (
             key={column}
             flex={ColumnsEnum[column]}
             center={ColumnsEnum[column] === 1}
-            hidden={ColumnsEnum[column] !== 3}
+            hideOnMobile={ColumnsEnum[column] !== 3}
             onClick={(): void => handleClick(SortsEnum[column])}
             highlighted={sort === SortsEnum[column]}
           >
