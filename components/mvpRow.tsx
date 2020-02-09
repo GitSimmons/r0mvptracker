@@ -67,7 +67,9 @@ const Row: React.FC<MVPProps> = ({
   watched,
   // whoKilled
 }: MVPProps) => {
-  const [timeToRespawn, setTimeToRespawn] = useState<number>();
+  const [timeToRespawn, setTimeToRespawn] = useState(lastKilled
+    ? differenceInMinutes(lastKilled, new Date()) + respawnRate
+    : null);
   const [status, setStatus] = useState<StatusEnum>(StatusEnum.UNKNOWN);
   const getStatus: () => void = () => {
     !timeToRespawn && timeToRespawn !== 0

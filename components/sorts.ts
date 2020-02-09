@@ -21,7 +21,9 @@ const sortByRespawn = (list: MVPProps[]): MVPProps[] =>
       if (!mvp.lastKilled) {
         return 1000;
       } else {
-        return differenceInMinutes(mvp.lastKilled, new Date()) + mvp.respawnRate;
+        return (
+          differenceInMinutes(mvp.lastKilled, new Date()) + mvp.respawnRate + mvp.variableRespawn
+        );
       }
     };
     return respawn(a) - respawn(b);
