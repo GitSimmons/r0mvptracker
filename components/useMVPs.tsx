@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { MVPProps } from "./types/interfaces";
-export const useMVPs = () => {
+export const useMVPs: () => {
+  error: boolean,
+  loading: boolean,
+  mvps: MVPProps[]
+} = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [mvps, setMvps] = useState<MVPProps[]>([]);
@@ -26,7 +30,7 @@ export const useMVPs = () => {
       }
     );
 
-    return () => unsubscribe();
+    return (): void => unsubscribe();
   }, []);
 
   return {

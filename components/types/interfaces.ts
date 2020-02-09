@@ -9,6 +9,6 @@ export interface MVPProps {
   element: string;
   variableRespawn?: number;
   watched?: boolean;
-  setWatchList?: any;
+  setWatchList?: (prevState: (mvps: string[]) => string[]) => void;
   whoKilled?: string;
 }

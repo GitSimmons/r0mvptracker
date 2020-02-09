@@ -17,16 +17,16 @@ const Container = styled.div`
   padding-bottom: 4rem;
 `;
 
-const mvpTable = () => {
-  const [columns, setColumns] = useState<SortsEnum[]>([
-    SortsEnum.LEVEL,
-    SortsEnum.NAME,
-    SortsEnum.RESPAWN,
-    SortsEnum.SIZE,
-    SortsEnum.RACE
-  ]);
+const mvpTable: React.FC = () => {
+  // const [columns, setColumns] = useState<SortsEnum[]>([
+  //   SortsEnum.LEVEL,
+  //   SortsEnum.NAME,
+  //   SortsEnum.RESPAWN,
+  //   SortsEnum.SIZE,
+  //   SortsEnum.RACE
+  // ]);
   const [sort, setSort] = useState<SortsEnum>(SortsEnum.RESPAWN);
-  const [watchList, setWatchList] = useState([]);
+  const [watchList, setWatchList] = useState<string[]>([]);
   const { mvps, loading } = useMVPs();
   return (
     <Container>

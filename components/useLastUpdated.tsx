@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
-export const useLastUpdated = () => {
+export const useLastUpdated: () => { error: boolean, loading: boolean, lastUpdated: number } = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState();
@@ -19,7 +19,7 @@ export const useLastUpdated = () => {
         }
       );
 
-    return () => unsubscribe();
+    return (): void => unsubscribe();
   }, []);
 
   return {

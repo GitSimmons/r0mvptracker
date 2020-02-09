@@ -18,7 +18,7 @@ const StyledHeader = styled.div`
   padding: 2rem 0 2rem 0;
 `;
 
-const Nav = () => {
+const Nav: React.FC = () => {
   const [timeSinceLastUpdate, setTimeSinceLastUpdate] = useState();
   const { loading, lastUpdated } = useLastUpdated();
   useInterval(() => {

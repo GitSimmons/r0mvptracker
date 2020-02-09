@@ -1,9 +1,9 @@
-import { differenceInMinutes } from "date-fns";
-import { SortsEnum } from "./types/enums";
-import { MVPProps } from "./types/interfaces";
-const sortByANumber = (list, propertyName) =>
+import { differenceInMinutes } from 'date-fns';
+import { SortsEnum } from './types/enums';
+import { MVPProps } from './types/interfaces';
+const sortByANumber = (list: MVPProps[], propertyName): MVPProps[] =>
   list.sort((a, b) => parseInt(a[propertyName]) - parseInt(b[propertyName]));
-const sortByFirstLetter = (list, propertyName) =>
+const sortByFirstLetter = (list: MVPProps[], propertyName): MVPProps[] =>
   list.sort((a, b) => {
     const x = a[propertyName].toLowerCase();
     const y = b[propertyName].toLowerCase();
@@ -15,16 +15,13 @@ const sortByFirstLetter = (list, propertyName) =>
     }
     return 0;
   });
-const sortByRespawn = list =>
+const sortByRespawn = (list: MVPProps[]): MVPProps[] =>
   list.sort((a, b) => {
-    let respawn = x => {
-      if (!x.lastKilled) {
+    const respawn: (mvp: MVPProps) => number = (mvp) => {
+      if (!mvp.lastKilled) {
         return 1000;
       } else {
-        return (
-          differenceInMinutes(x.lastKilled, new Date()) +
-          parseInt(x.respawnRate)
-        );
+        return differenceInMinutes(mvp.lastKilled, new Date()) + mvp.respawnRate;
       }
     };
     return respawn(a) - respawn(b);

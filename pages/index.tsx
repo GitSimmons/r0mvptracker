@@ -41,7 +41,7 @@ const Center = styled.div`
   justify-items: center;
 `;
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <GlobalStyle />

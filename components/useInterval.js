@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 
 // Taken from Dan Abramov's blog: https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 // We're mostly going to be using this as a 1s 'tick' for progress bar updates

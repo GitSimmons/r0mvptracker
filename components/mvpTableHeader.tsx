@@ -19,11 +19,11 @@ const FlexColumn = styled.div<{
   hidden?: boolean;
   highlighted?: boolean;
 }>`
-  flex: ${props => (props.flex ? props.flex : null)};
+  flex: ${(props): number => (props.flex ? props.flex : null)};
   display: flex;
   align-items: center;
-  justify-content: ${props => (props.center ? "center" : "left")};
-  display: ${props => (props.hidden ? "none" : "flex")};
+  justify-content: ${(props): string => (props.center ? "center" : "left")};
+  display: ${(props): string => (props.hidden ? "none" : "flex")};
   &:hover {
     cursor: pointer;
     color: #fff;
@@ -31,11 +31,11 @@ const FlexColumn = styled.div<{
   @media (min-width: 768px) {
     display: flex;
   }
-  color: ${props => (props.highlighted ? "#fff" : "#ddd")};
+  color: ${(props): string => (props.highlighted ? "#fff" : "#ddd")};
 `;
 
-const Row = ({ setSort, sort }: { setSort: any; sort: SortsEnum }) => {
-  const handleClick = (column: SortsEnum) => {
+const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum }> = ({ setSort, sort }: { setSort: (sort: SortsEnum) => void, sort: SortsEnum }) => {
+  const handleClick = (column: SortsEnum): void => {
     if (column == sort) {
       setSort(SortsEnum.REVERSE);
     } else {
@@ -48,14 +48,14 @@ const Row = ({ setSort, sort }: { setSort: any; sort: SortsEnum }) => {
         flex={1}
         center
         hidden
-        onClick={() => handleClick(SortsEnum.LEVEL)}
+        onClick={(): void => handleClick(SortsEnum.LEVEL)}
         highlighted={sort === SortsEnum.LEVEL}
       >
         Level
       </FlexColumn>
       <FlexColumn
         flex={3}
-        onClick={() => handleClick(SortsEnum.NAME)}
+        onClick={(): void => handleClick(SortsEnum.NAME)}
         highlighted={sort === SortsEnum.NAME}
       >
         MVP
@@ -63,14 +63,14 @@ const Row = ({ setSort, sort }: { setSort: any; sort: SortsEnum }) => {
       <FlexColumn
         flex={2}
         hidden
-        onClick={() => handleClick(SortsEnum.FIELD)}
+        onClick={(): void => handleClick(SortsEnum.FIELD)}
         highlighted={sort === SortsEnum.FIELD}
       >
         Field
       </FlexColumn>
       <FlexColumn
         flex={3}
-        onClick={() => handleClick(SortsEnum.RESPAWN)}
+        onClick={(): void => handleClick(SortsEnum.RESPAWN)}
         highlighted={sort === SortsEnum.RESPAWN}
       >
         Respawn
@@ -79,7 +79,7 @@ const Row = ({ setSort, sort }: { setSort: any; sort: SortsEnum }) => {
         flex={1}
         center
         hidden
-        onClick={() => handleClick(SortsEnum.SIZE)}
+        onClick={(): void => handleClick(SortsEnum.SIZE)}
         highlighted={sort === SortsEnum.SIZE}
       >
         Size
@@ -87,7 +87,7 @@ const Row = ({ setSort, sort }: { setSort: any; sort: SortsEnum }) => {
       <FlexColumn
         flex={2}
         hidden
-        onClick={() => handleClick(SortsEnum.RACE)}
+        onClick={(): void => handleClick(SortsEnum.RACE)}
         highlighted={sort === SortsEnum.RACE}
       >
         Race
