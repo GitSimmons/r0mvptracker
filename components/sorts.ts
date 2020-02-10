@@ -32,6 +32,8 @@ const sortBy = (list: MVPProps[], sort: SortsEnum): MVPProps[] => {
   switch (sort) {
     case SortsEnum.FIELD:
       return sortByFirstLetter(list, SortsEnum.FIELD);
+    case SortsEnum.LAST:
+      return sortByFirstLetter(list, SortsEnum.LAST);
     case SortsEnum.LEVEL:
       return sortByANumber(list, SortsEnum.LEVEL);
     case SortsEnum.NAME:

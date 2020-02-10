@@ -6,6 +6,7 @@ export enum SortsEnum {
   RESPAWN = 'respawn',
   REVERSE = 'reverse',
   SIZE = 'size',
+  LAST = 'whoKilled',
 }
 
 // Is there a better way of doing this? Yes
