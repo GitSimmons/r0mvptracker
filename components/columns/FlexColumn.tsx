@@ -1,12 +1,5 @@
 import styled from 'styled-components'
-import { MVPProps } from '../types/interfaces'
 import { ColumnsEnum } from '../types/enums'
-import Name from './Name'
-import Level from './Level'
-import Field from './Field'
-import Respawn from './Respawn'
-import Race from './Race'
-import Size from './Size'
 
 export interface FlexProps {
   flex: number,
