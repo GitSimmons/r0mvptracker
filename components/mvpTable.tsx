@@ -28,12 +28,14 @@ const mvpTable: React.FC = () => {
   const [sort, setSort] = useState<SortsEnum>(SortsEnum.RESPAWN);
   const [watchList, setWatchList] = useState<string[]>([]);
   const { mvps, loading } = useMVPs();
+  const columns = ["LEVEL", "NAME", "FIELD", "RESPAWN", "SIZE", "RACE", "LAST"]
   return (
     <Container>
-      <HeaderRow setSort={setSort} sort={sort} />
+      <HeaderRow setSort={setSort} sort={sort} columns={columns} />
       {!loading &&
         sortBy(mvps, sort).map(mvp => (
           <Row
+            columns={columns}
             setWatchList={setWatchList}
             watched={watchList.includes(mvp.name)}
             key={mvp.name}

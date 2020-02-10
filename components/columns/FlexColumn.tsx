@@ -1,4 +1,12 @@
 import styled from 'styled-components'
+import { MVPProps } from '../types/interfaces'
+import { ColumnsEnum } from '../types/enums'
+import Name from './Name'
+import Level from './Level'
+import Field from './Field'
+import Respawn from './Respawn'
+import Race from './Race'
+import Size from './Size'
 
 export interface FlexProps {
   flex: number,
@@ -6,7 +14,7 @@ export interface FlexProps {
   hideOnMobile?: boolean
 }
 
-export const FlexColumn = styled.div<FlexProps>`
+export const StyledFlexColumn = styled.div<FlexProps>`
   flex: ${(props): number => (props.flex ? props.flex : null)};
   display: flex;
   align-items: center;
@@ -16,5 +24,15 @@ export const FlexColumn = styled.div<FlexProps>`
     display: flex;
   }
 `;
+
+export const FlexColumn: React.FC<{ type: string, children: React.ReactNode }> = ({ type, children }: { type: string, children: React.ReactNode }) =>
+  <StyledFlexColumn
+    flex={ColumnsEnum[type]}
+    center={ColumnsEnum[type] === 1}
+    hideOnMobile={ColumnsEnum[type] !== 3}
+  >
+    {children}
+  </StyledFlexColumn>
+
 
 export default FlexColumn

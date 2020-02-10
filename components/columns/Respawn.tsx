@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import FlexColumn, { FlexProps } from './FlexColumn'
 import { MVPProps } from '../types/interfaces'
 
 
@@ -29,8 +28,8 @@ interface RespawnProps {
   respawnRate: number
 }
 
-export const RespawnColumn: React.FC<Partial<MVPProps> & FlexProps & RespawnProps> = ({ flex, hideOnMobile, center, timeToRespawn, status, variableRespawn, respawnRate }: Partial<MVPProps> & FlexProps & RespawnProps) =>
-  <FlexColumn flex={flex} hideOnMobile={hideOnMobile} center={center} >
+export const RespawnColumn: React.FC<Partial<MVPProps> & RespawnProps> = ({ timeToRespawn, status, variableRespawn, respawnRate }: Partial<MVPProps> & RespawnProps) =>
+  <>
     <div style={{ width: "30%" }}>
       {status === "dead" && timeToRespawn + "m"}
       {status === "spawning" && timeToRespawn + variableRespawn + "m"}
@@ -43,6 +42,6 @@ export const RespawnColumn: React.FC<Partial<MVPProps> & FlexProps & RespawnProp
         />
       </ProgressBar>
     )}
-  </FlexColumn>
+  </>
 
 export default RespawnColumn

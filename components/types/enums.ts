@@ -19,6 +19,7 @@ export enum ColumnsEnum {
   RACE = 2,
   RESPAWN = 3,
   SIZE = 1, // okay it's a 1 char string.
+  LAST = 2,
 }
 
 export enum StatusEnum {

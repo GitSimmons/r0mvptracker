@@ -1,8 +1,7 @@
-import FlexColumn, { FlexProps } from './FlexColumn'
 import { MVPProps } from '../types/interfaces'
 
-export const NameColumn: React.FC<Partial<MVPProps> & FlexProps> = ({ flex, hideOnMobile, center, element, name }: Partial<MVPProps> & FlexProps) =>
-  <FlexColumn flex={flex} hideOnMobile={hideOnMobile} center={center} >
+export const NameColumn: React.FC<Partial<MVPProps>> = ({ element, name }: Partial<MVPProps>) =>
+  <>
     {
       <img
         src={`/static/elements/${element.toLowerCase()}.png`}
@@ -12,6 +11,6 @@ export const NameColumn: React.FC<Partial<MVPProps> & FlexProps> = ({ flex, hide
       />
     }
     {name}
-  </FlexColumn>
+  </>
 
 export default NameColumn

@@ -35,7 +35,7 @@ const FlexColumn = styled.div<{
   text-transform: capitalize;
 `;
 
-const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum }> = ({ setSort, sort }: { setSort: (sort: SortsEnum) => void, sort: SortsEnum }) => {
+const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum, columns: string[] }> = ({ setSort, sort, columns }: { columns: string[], setSort: (sort: SortsEnum) => void, sort: SortsEnum }) => {
   const handleClick = (column: SortsEnum): void => {
     if (column == sort) {
       setSort(SortsEnum.REVERSE);
@@ -43,7 +43,6 @@ const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum }> = (
       setSort(column);
     }
   };
-  const columns = ["LEVEL", "NAME", "FIELD", "RESPAWN", "SIZE", "RACE"]
   return (
     <StyledRow>
       {
