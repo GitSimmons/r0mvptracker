@@ -24,6 +24,8 @@ const FlexColumn = styled.div<{
   align-items: center;
   justify-content: ${(props): string => (props.center ? "center" : "left")};
   display: ${(props): string => (props.hideOnMobile ? "none" : "flex")};
+  margin: ${(props): string => props.flex === 1 ? '0 0' : '0 0.5rem'};
+
   &:hover {
     cursor: pointer;
     color: #fff;
