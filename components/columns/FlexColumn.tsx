@@ -13,9 +13,12 @@ export const StyledFlexColumn = styled.div<FlexProps>`
   align-items: center;
   justify-content: ${(props): string => (props.center ? "center" : "left")};
   display: ${(props): string => (props.hideOnMobile ? "none" : "flex")};
-  @media (min-width: 768px) {
-    display: flex;
-  }
+  white-space: nowrap;
+  overflow-x: hidden;
+  margin: ${(props): string => props.flex === 1 ? '0 0' : '0 0.5rem'};
+@media(min-width: 768px) {
+  display: flex;
+}
 `;
 
 export const FlexColumn: React.FC<{ type: string, children: React.ReactNode }> = ({ type, children }: { type: string, children: React.ReactNode }) =>

@@ -6,6 +6,7 @@ import { StatusEnum } from './types/enums';
 import { MVPProps } from './types/interfaces';
 import { FlexColumn } from './columns/FlexColumn';
 import Field from './columns/Field';
+import Hide from './columns/Hide'
 import Last from './columns/Last'
 import Level from './columns/Level';
 import Name from './columns/Name';
@@ -37,11 +38,11 @@ const StyledRow = styled.div<{ status: StatusEnum; watched?: boolean }>`
   font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   margin-top: 2px;
-  padding-left: 1rem;
+  padding: 0 1rem;
   font-style: ${(props): string => (props.watched ? 'italic' : 'auto')};
   width: ${(props): string => (props.watched ? '101%' : '100%')};
   @media (min-width: 768px) {
-    padding-left: 0;
+    padding: 0 0;
   }
   &:hover {
     background-color: ${(props): string =>
@@ -54,7 +55,8 @@ const StyledRow = styled.div<{ status: StatusEnum; watched?: boolean }>`
           : '#aaa'};
   }
 `;
-const Row: React.FC<MVPProps & { columns: string[] }> = ({
+const Row: React.FC<MVPProps & { columns: string[], hideRow: any }> = ({
+  hideRow,
   columns,
   name,
   level,
@@ -69,7 +71,7 @@ const Row: React.FC<MVPProps & { columns: string[] }> = ({
   watched,
   whoKilled
 }:
-  MVPProps & { columns: string[] }) => {
+  MVPProps & { columns: string[], hideRow: any }) => {
   const [timeToRespawn, setTimeToRespawn] = useState(
     lastKilled ? differenceInMinutes(lastKilled, new Date()) + respawnRate : null,
   );
@@ -95,6 +97,9 @@ const Row: React.FC<MVPProps & { columns: string[] }> = ({
     switch (type) {
       case 'FIELD': {
         return <Field field={field} />;
+      }
+      case 'HIDE': {
+        return <Hide hideRow={hideRow} name={name} />
       }
       case 'LAST': {
         return <Last whoKilled={whoKilled} />;

@@ -7,10 +7,6 @@ const ProgressBar = styled.div`
   height: 8px;
   border-radius: 5px;
   background: #674114;
-  margin-right: 1.2rem;
-  @media (min-width: 768px) {
-    margin-right: 0;
-  }
 `;
 
 const ProgressTracker = styled.div<{ percentage: string }>`

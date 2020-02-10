@@ -7,6 +7,7 @@ export enum SortsEnum {
   REVERSE = 'reverse',
   SIZE = 'size',
   LAST = 'whoKilled',
+  HIDE = 'hide',
 }
 
 // Is there a better way of doing this? Yes
@@ -21,6 +22,7 @@ export enum ColumnsEnum {
   RESPAWN = 3,
   SIZE = 1, // okay it's a 1 char string.
   LAST = 2,
+  HIDE = 1,
 }
 
 export enum StatusEnum {

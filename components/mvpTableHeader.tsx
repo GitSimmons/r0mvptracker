@@ -35,9 +35,11 @@ const FlexColumn = styled.div<{
   text-transform: capitalize;
 `;
 
-const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum, columns: string[] }> = ({ setSort, sort, columns }: { columns: string[], setSort: (sort: SortsEnum) => void, sort: SortsEnum }) => {
+const Row: React.FC<{ setSort: (sort: SortsEnum) => void, sort: SortsEnum, columns: string[], unhideRows: any }> = ({ setSort, sort, columns, unhideRows }: { unhideRows: any, columns: string[], setSort: (sort: SortsEnum) => void, sort: SortsEnum }) => {
   const handleClick = (column: SortsEnum): void => {
-    if (column == sort) {
+    if (column == SortsEnum.HIDE) {
+      unhideRows()
+    } else if (column == sort) {
       setSort(SortsEnum.REVERSE);
     } else {
       setSort(column);
