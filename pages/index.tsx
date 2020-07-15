@@ -1,9 +1,9 @@
-import React from "react";
-import Head from "next/head";
-import Nav from "../components/nav";
-import MVP from "../components/mvpTable";
-import Footer from "../components/footer";
-import styled, { createGlobalStyle } from "styled-components";
+import React from 'react';
+import Head from 'next/head';
+import Nav from '../components/nav';
+import MVP from '../components/mvpTable';
+import Footer from '../components/footer';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
