@@ -1,8 +1,8 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { useState } from "react";
-import { useLastUpdated } from "./useLastUpdated";
-import { useInterval } from "./useInterval";
+import Link from 'next/link';
+import styled from 'styled-components';
+import { useState } from 'react';
+import { useLastUpdated } from './useLastUpdated';
+import { useInterval } from './useInterval';
 const StyledHeader = styled.div`
   width: 90%;
   color: white;
@@ -10,7 +10,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   line-height: 2;
-  font-family: "Open Sans", Lato, Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Lato, Arial, Helvetica, sans-serif;
   font-size: 14px;
   @media (min-width: 768px) {
     width: 70%;
@@ -19,13 +19,11 @@ const StyledHeader = styled.div`
 `;
 
 const Nav: React.FC = () => {
-  const [timeSinceLastUpdate, setTimeSinceLastUpdate] = useState();
+  const [timeSinceLastUpdate, setTimeSinceLastUpdate] = useState<number>();
   const { loading, lastUpdated } = useLastUpdated();
   useInterval(() => {
     !loading &&
-      setTimeSinceLastUpdate(
-        Math.floor((new Date().valueOf() / 1000 - lastUpdated) / 60)
-      );
+      setTimeSinceLastUpdate(Math.floor((new Date().valueOf() / 1000 - lastUpdated) / 60));
   }, 1000);
   return (
     <StyledHeader>

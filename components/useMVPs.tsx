@@ -1,33 +1,33 @@
-import { useState, useEffect } from "react";
-import { db } from "../firebase";
-import { MVPProps } from "./types/interfaces";
+import { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { MVPProps } from './types/interfaces';
 export const useMVPs: () => {
-  error: boolean,
-  loading: boolean,
-  mvps: MVPProps[]
+  error: string;
+  loading: boolean;
+  mvps: MVPProps[];
 } = () => {
-  const [error, setError] = useState();
+  const [error, setError] = useState<string>();
   const [loading, setLoading] = useState(true);
   const [mvps, setMvps] = useState<MVPProps[]>([]);
 
   useEffect(() => {
-    const unsubscribe = db.collection("mvp").onSnapshot(
-      snapshot => {
+    const unsubscribe = db.collection('mvp').onSnapshot(
+      (snapshot) => {
         const mvps = [];
-        snapshot.forEach(doc => {
+        snapshot.forEach((doc) => {
           const mvp = doc.data();
           mvp.level = parseInt(mvp.level);
           mvp.respawnRate = parseInt(mvp.respawnRate);
           mvp.variableRespawn = mvp.variableRespawn ? parseInt(mvp.variableRespawn) : 10; // 10 is the default respawn time
-          mvp.lastKilled = new Date(mvp.lastKilled + "+0000"); // The scraped page is in UTC,and we stored it as a string without Timezone info.
+          mvp.lastKilled = new Date(mvp.lastKilled + '+0000'); // The scraped page is in UTC,and we stored it as a string without Timezone info.
           mvps.push(mvp);
         });
         setLoading(false);
         setMvps(mvps);
       },
-      err => {
-        setError(err);
-      }
+      (err) => {
+        setError(err.message);
+      },
     );
 
     return (): void => unsubscribe();
@@ -36,6 +36,6 @@ export const useMVPs: () => {
   return {
     error,
     loading,
-    mvps
+    mvps,
   };
 };
