@@ -8,6 +8,7 @@ export enum SortsEnum {
   SIZE = 'size',
   LAST = 'whoKilled',
   HIDE = 'hide',
+  POINTS = 'points',
 }
 
 // Is there a better way of doing this? Yes
@@ -23,6 +24,7 @@ export enum ColumnsEnum {
   SIZE = 1, // okay it's a 1 char string.
   LAST = 2,
   HIDE = 1,
+  POINTS = 1,
 }
 
 export enum StatusEnum {

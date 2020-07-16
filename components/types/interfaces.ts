@@ -11,4 +11,5 @@ export interface MVPProps {
   watched?: boolean;
   setWatchList?: (prevState: (mvps: string[]) => string[]) => void;
   whoKilled?: string;
+  points?: number;
 }

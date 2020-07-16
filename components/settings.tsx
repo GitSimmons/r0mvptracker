@@ -63,7 +63,17 @@ export const Settings: React.FC<{ columns: string[]; toggleColumn: any; queryURL
   queryURL,
 }) => {
   const [visible, setVisible] = useState(false);
-  const allColumns = ['LEVEL', 'NAME', 'FIELD', 'RESPAWN', 'SIZE', 'RACE', 'LAST', 'HIDE'];
+  const allColumns = [
+    'LEVEL',
+    'NAME',
+    'FIELD',
+    'RESPAWN',
+    'SIZE',
+    'RACE',
+    'POINTS',
+    'LAST',
+    'HIDE',
+  ];
   return (
     <StyledSettings>
       <StyledSettingsButton onClick={(): void => setVisible(!visible)}>
@@ -79,6 +89,7 @@ export const Settings: React.FC<{ columns: string[]; toggleColumn: any; queryURL
             </li>
           ))}
         </ul>
+        Link with your settings
         <QueryForm queryURL={queryURL} />
       </SettingsContainer>
     </StyledSettings>

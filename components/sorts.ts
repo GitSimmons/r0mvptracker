@@ -47,6 +47,8 @@ const sortBy = (list: MVPProps[], sort: SortsEnum): MVPProps[] => {
     case SortsEnum.REVERSE:
       // Reverse mutates arrays, so we make a shallow copy first
       return [...list].reverse();
+    case SortsEnum.POINTS:
+      return sortByANumber(list, SortsEnum.POINTS);
     default:
       return sortByRespawn(list);
   }

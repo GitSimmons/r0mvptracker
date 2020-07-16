@@ -6,13 +6,15 @@ import { StatusEnum } from './types/enums';
 import { MVPProps } from './types/interfaces';
 import { FlexColumn } from './columns/FlexColumn';
 import Field from './columns/Field';
-import Hide from './columns/Hide'
-import Last from './columns/Last'
+import Hide from './columns/Hide';
+import Last from './columns/Last';
 import Level from './columns/Level';
 import Name from './columns/Name';
 import Race from './columns/Race';
 import Respawn from './columns/Respawn';
 import Size from './columns/Size';
+import Points from './columns/Points';
+
 // TODO: Move colors into variables, maybe use SASS to highlight base colors.
 const StyledRow = styled.div<{ status: StatusEnum; watched?: boolean }>`
   display: flex;
@@ -22,16 +24,16 @@ const StyledRow = styled.div<{ status: StatusEnum; watched?: boolean }>`
     props.status === StatusEnum.DEAD && props.watched == true
       ? '#bb2f31'
       : props.status === StatusEnum.ALIVE && props.watched == true
-        ? '#29c17a'
-        : props.status === StatusEnum.SPAWNING && props.watched == true
-          ? '#beb52d'
-          : props.status === StatusEnum.DEAD
-            ? '#a84344'
-            : props.status === StatusEnum.ALIVE
-              ? '#43a879'
-              : props.status === StatusEnum.SPAWNING
-                ? '#a8a243'
-                : '#aaa'};
+      ? '#29c17a'
+      : props.status === StatusEnum.SPAWNING && props.watched == true
+      ? '#beb52d'
+      : props.status === StatusEnum.DEAD
+      ? '#a84344'
+      : props.status === StatusEnum.ALIVE
+      ? '#43a879'
+      : props.status === StatusEnum.SPAWNING
+      ? '#a8a243'
+      : '#aaa'};
   color: white;
   display: flex;
   font-weight: 500;
@@ -46,32 +48,32 @@ const StyledRow = styled.div<{ status: StatusEnum; watched?: boolean }>`
   }
   &:hover {
     background-color: ${(props): string =>
-    props.status == 'dead'
-      ? '#bb2f31'
-      : props.status == 'alive'
+      props.status == 'dead'
+        ? '#bb2f31'
+        : props.status == 'alive'
         ? '#29c17a'
         : props.status == 'spawning'
-          ? '#beb52d'
-          : '#aaa'};
+        ? '#beb52d'
+        : '#aaa'};
   }
 `;
-const Row: React.FC<MVPProps & { columns: string[], hideRow: any }> = ({
-  hideRow,
+const Row: React.FC<MVPProps & { columns: string[]; hideRow: any }> = ({
   columns,
-  name,
-  level,
-  lastKilled,
+  element,
   field,
-  size,
+  hideRow,
+  lastKilled,
+  level,
+  name,
+  points,
   race,
   respawnRate,
-  element,
-  variableRespawn,
   setWatchList,
+  size,
+  variableRespawn,
   watched,
-  whoKilled
-}:
-  MVPProps & { columns: string[], hideRow: any }) => {
+  whoKilled,
+}: MVPProps & { columns: string[]; hideRow: any }) => {
   const [timeToRespawn, setTimeToRespawn] = useState(
     lastKilled ? differenceInMinutes(lastKilled, new Date()) + respawnRate : null,
   );
@@ -80,10 +82,10 @@ const Row: React.FC<MVPProps & { columns: string[], hideRow: any }> = ({
     !timeToRespawn && timeToRespawn !== 0
       ? setStatus(StatusEnum.UNKNOWN)
       : timeToRespawn <= -variableRespawn
-        ? setStatus(StatusEnum.ALIVE)
-        : timeToRespawn > -variableRespawn && timeToRespawn <= 0
-          ? setStatus(StatusEnum.SPAWNING)
-          : setStatus(StatusEnum.DEAD);
+      ? setStatus(StatusEnum.ALIVE)
+      : timeToRespawn > -variableRespawn && timeToRespawn <= 0
+      ? setStatus(StatusEnum.SPAWNING)
+      : setStatus(StatusEnum.DEAD);
   };
   useEffect(() => getStatus(), [timeToRespawn]);
   const getRespawn: () => number = () =>
@@ -99,7 +101,7 @@ const Row: React.FC<MVPProps & { columns: string[], hideRow: any }> = ({
         return <Field field={field} />;
       }
       case 'HIDE': {
-        return <Hide hideRow={hideRow} name={name} />
+        return <Hide hideRow={hideRow} name={name} />;
       }
       case 'LAST': {
         return <Last whoKilled={whoKilled} />;
@@ -109,6 +111,9 @@ const Row: React.FC<MVPProps & { columns: string[], hideRow: any }> = ({
       }
       case 'NAME': {
         return <Name name={name} element={element} />;
+      }
+      case 'POINTS': {
+        return <Points points={points} />;
       }
       case 'RACE': {
         return <Race race={race} />;

@@ -12,7 +12,7 @@ const QueryForm = ({ queryURL }) => {
   };
   if (process.browser) {
     return (
-      <div style={{ color: 'white' }}>
+      <div style={{ color: 'white', marginTop: '0.5rem' }}>
         <form style={{ display: 'flex' }}>
           <textarea
             style={{

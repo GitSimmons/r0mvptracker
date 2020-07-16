@@ -4,7 +4,6 @@ import * as queryString from 'querystring';
 import HeaderRow from './mvpTableHeader';
 import Row from './mvpRow';
 import Settings from './settings';
-import QueryForm from './queryurl';
 import { useState, useEffect } from 'react';
 import { useMVPs } from './useMVPs';
 import { sortBy } from './sorts';
@@ -28,8 +27,18 @@ const mvpTable: React.FC = () => {
   const [sort, setSort] = useState<SortsEnum>(SortsEnum.RESPAWN);
   const [watchList, setWatchList] = useState<string[]>([]);
   const { mvps, loading } = useMVPs();
-  const allColumns = ['LEVEL', 'NAME', 'FIELD', 'RESPAWN', 'SIZE', 'RACE', 'LAST', 'HIDE'];
-  const hiddenColumns = ['LAST', 'HIDE'];
+  const allColumns = [
+    'LEVEL',
+    'NAME',
+    'FIELD',
+    'RESPAWN',
+    'SIZE',
+    'RACE',
+    'POINTS',
+    'LAST',
+    'HIDE',
+  ];
+  const hiddenColumns = ['FIELD', 'SIZE', 'RACE', 'HIDE'];
   const [columns, setColumns] = useState<string[]>(
     allColumns.filter((column) => !hiddenColumns.includes(column)),
   );
@@ -88,20 +97,21 @@ const mvpTable: React.FC = () => {
           .filter((mvp) => !hiddenRows.includes(mvp.name))
           .map((mvp) => (
             <Row
-              hideRow={hideRow}
               columns={columns}
-              setWatchList={setWatchList}
-              watched={watchList.includes(mvp.name)}
-              key={mvp.name}
-              name={mvp.name}
-              field={mvp.field}
-              level={mvp.level}
-              size={mvp.size}
-              race={mvp.race}
-              lastKilled={mvp.lastKilled}
-              respawnRate={mvp.respawnRate}
               element={mvp.element}
+              field={mvp.field}
+              hideRow={hideRow}
+              key={mvp.name}
+              lastKilled={mvp.lastKilled}
+              level={mvp.level}
+              name={mvp.name}
+              points={mvp.points}
+              race={mvp.race}
+              setWatchList={setWatchList}
+              size={mvp.size}
+              respawnRate={mvp.respawnRate}
               variableRespawn={mvp.variableRespawn}
+              watched={watchList.includes(mvp.name)}
               whoKilled={mvp.whoKilled}
             />
           ))}
