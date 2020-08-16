@@ -15,25 +15,25 @@ import Respawn from './columns/Respawn';
 import Size from './columns/Size';
 import Points from './columns/Points';
 
+const theme = {
+  alive: 'rgb(67,178,121)',
+  spawning: 'rgb(168,162,67)',
+  dead: 'rgb(175,75,75)',
+};
 // TODO: Move colors into variables, maybe use SASS to highlight base colors.
 const StyledRow = styled.div<{ status: StatusEnum; watched?: boolean }>`
   display: flex;
   align-self: center;
   transition: background 0.5s ease;
   background-color: ${(props): string =>
-    props.status === StatusEnum.DEAD && props.watched == true
-      ? '#bb2f31'
-      : props.status === StatusEnum.ALIVE && props.watched == true
-      ? '#29c17a'
-      : props.status === StatusEnum.SPAWNING && props.watched == true
-      ? '#beb52d'
-      : props.status === StatusEnum.DEAD
-      ? '#a84344'
+    props.status === StatusEnum.DEAD
+      ? 'rgb(175,75,75)'
       : props.status === StatusEnum.ALIVE
-      ? '#43a879'
+      ? 'rgb(67,168,121)'
       : props.status === StatusEnum.SPAWNING
-      ? '#a8a243'
+      ? 'rgb(168,162,67)'
       : '#aaa'};
+  filter: ${(props): string => (props.watched == true ? 'contrast(150%)' : 'contrast(100%)')};
   color: white;
   display: flex;
   font-weight: 500;
@@ -47,14 +47,7 @@ const StyledRow = styled.div<{ status: StatusEnum; watched?: boolean }>`
     padding: 0 0;
   }
   &:hover {
-    background-color: ${(props): string =>
-      props.status == 'dead'
-        ? '#bb2f31'
-        : props.status == 'alive'
-        ? '#29c17a'
-        : props.status == 'spawning'
-        ? '#beb52d'
-        : '#aaa'};
+    filter: contrast(150%);
   }
 `;
 const Row: React.FC<MVPProps & { columns: string[]; hideRow: any }> = ({

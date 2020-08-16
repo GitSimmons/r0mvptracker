@@ -7,14 +7,16 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
+    position: relative;
     margin: 0;
     padding: 0;
     background: linear-gradient(
-      to right,
+      to bottom,
       rgba(0, 0, 0, 0.75) 0%,
       rgba(0, 0, 0, 0.75) 100%
     ),
     url("https://res.cloudinary.com/acloudforben/image/upload/f_auto/v1578003080/background2156x1080.jpg");
+	background-attachment: fixed;
     background-size: inherit;
   background-position: top;
   @media (min-height : 1080px)  {

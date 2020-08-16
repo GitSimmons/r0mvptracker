@@ -18,9 +18,9 @@ const QueryForm = ({ queryURL }) => {
             style={{
               width: '80%',
               whiteSpace: 'nowrap',
-              overflow: 'auto',
               color: '#FFF',
               backgroundColor: '#000',
+              overflow: 'hidden',
               border: 'none',
             }}
             rows={1}
